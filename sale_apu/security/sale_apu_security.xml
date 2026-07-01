@@ -8,6 +8,6 @@
     <record id="group_apu_view_costs" model="res.groups">
         <field name="name">APU / View Costs</field>
         <field name="category_id" ref="sale_apu.module_category_apu"/>
-        <field name="implied_ids" eval="[(4, ref('sale.group_sale_salesman'))]"/>
+        <field name="implied_ids" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
     </record>
 </odoo>
