@@ -5,7 +5,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
-                <page string="APU" groups="sale_apu.group_apu_view_costs,sale.group_sale_manager">
+                <page string="APU" groups="sale_apu.group_apu_view_costs,sales_team.group_sale_manager">
                     <group>
                         <field name="apu_line_ids" mode="list,form" nolabel="1">
                             <list editable="bottom" default_order="sequence, id">
@@ -14,8 +14,8 @@
                                 <field name="name"/>
                                 <field name="quantity"/>
                                 <field name="product_uom_id"/>
-                                <field name="unit_cost" groups="sale_apu.group_apu_view_costs,sale.group_sale_manager"/>
-                                <field name="subtotal" sum="Cost Subtotal" groups="sale_apu.group_apu_view_costs,sale.group_sale_manager"/>
+                                <field name="unit_cost" groups="sale_apu.group_apu_view_costs,sales_team.group_sale_manager"/>
+                                <field name="subtotal" sum="Cost Subtotal" groups="sale_apu.group_apu_view_costs,sales_team.group_sale_manager"/>
                             </list>
                             <form string="APU Line">
                                 <sheet>
@@ -27,8 +27,8 @@
                                         </group>
                                         <group>
                                             <field name="product_uom_id"/>
-                                            <field name="unit_cost" groups="sale_apu.group_apu_view_costs,sale.group_sale_manager"/>
-                                            <field name="subtotal" readonly="1" groups="sale_apu.group_apu_view_costs,sale.group_sale_manager"/>
+                                            <field name="unit_cost" groups="sale_apu.group_apu_view_costs,sales_team.group_sale_manager"/>
+                                            <field name="subtotal" readonly="1" groups="sale_apu.group_apu_view_costs,sales_team.group_sale_manager"/>
                                         </group>
                                     </group>
                                 </sheet>
@@ -36,9 +36,9 @@
                         </field>
                     </group>
                     <group col="4">
-                        <field name="apu_total" readonly="1" groups="sale_apu.group_apu_view_costs,sale.group_sale_manager"/>
-                        <field name="apu_expected_profit" readonly="1" groups="sale_apu.group_apu_view_costs,sale.group_sale_manager"/>
-                        <field name="apu_margin_percent" readonly="1" groups="sale_apu.group_apu_view_costs,sale.group_sale_manager"/>
+                        <field name="apu_total" readonly="1" groups="sale_apu.group_apu_view_costs,sales_team.group_sale_manager"/>
+                        <field name="apu_expected_profit" readonly="1" groups="sale_apu.group_apu_view_costs,sales_team.group_sale_manager"/>
+                        <field name="apu_margin_percent" readonly="1" groups="sale_apu.group_apu_view_costs,sales_team.group_sale_manager"/>
                     </group>
                 </page>
             </xpath>

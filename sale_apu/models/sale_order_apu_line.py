@@ -51,7 +51,7 @@ class SaleOrderApuLine(models.Model):
         string="Unit Cost",
         currency_field="currency_id",
         default=0.0,
-        groups="sale_apu.group_apu_view_costs,sale.group_sale_manager",
+        groups="sale_apu.group_apu_view_costs,sales_team.group_sale_manager",
     )
     subtotal = fields.Monetary(
         string="Cost Subtotal",
@@ -59,7 +59,7 @@ class SaleOrderApuLine(models.Model):
         compute="_compute_subtotal",
         store=True,
         readonly=True,
-        groups="sale_apu.group_apu_view_costs,sale.group_sale_manager",
+        groups="sale_apu.group_apu_view_costs,sales_team.group_sale_manager",
     )
 
     _sql_constraints = [

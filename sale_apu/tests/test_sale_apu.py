@@ -6,12 +6,17 @@ class TestSaleApu(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "APU Customer"})
-        cls.pricelist = cls.env.ref("product.list0")
+        cls.pricelist = cls.env["product.pricelist"].create(
+            {
+                "name": "APU Test Pricelist",
+                "currency_id": cls.env.company.currency_id.id,
+            }
+        )
         cls.unit_uom = cls.env.ref("uom.product_uom_unit")
         cls.product = cls.env["product.template"].create(
             {
                 "name": "APU Product",
-                "detailed_type": "consu",
+                "type": "consu",
                 "sale_ok": True,
                 "purchase_ok": True,
                 "standard_price": 42.5,
@@ -23,7 +28,7 @@ class TestSaleApu(TransactionCase):
         cls.sale_product = cls.env["product.template"].create(
             {
                 "name": "Sale Product",
-                "detailed_type": "consu",
+                "type": "consu",
                 "sale_ok": True,
                 "purchase_ok": True,
                 "standard_price": 5.0,
@@ -136,7 +141,7 @@ class TestSaleApu(TransactionCase):
         other_product = self.env["product.template"].create(
             {
                 "name": "Other APU Product",
-                "detailed_type": "consu",
+                "type": "consu",
                 "sale_ok": True,
                 "purchase_ok": True,
                 "standard_price": 77.7,

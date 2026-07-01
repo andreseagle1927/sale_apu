@@ -9,7 +9,7 @@ class SaleOrder(models.Model):
         inverse_name="sale_order_id",
         string="APU Lines",
         copy=False,
-        groups="sale_apu.group_apu_view_costs,sale.group_sale_manager",
+        groups="sale_apu.group_apu_view_costs,sales_team.group_sale_manager",
     )
     apu_total = fields.Monetary(
         string="Total APU",
@@ -17,7 +17,7 @@ class SaleOrder(models.Model):
         compute="_compute_apu_summary",
         store=True,
         readonly=True,
-        groups="sale_apu.group_apu_view_costs,sale.group_sale_manager",
+        groups="sale_apu.group_apu_view_costs,sales_team.group_sale_manager",
     )
     apu_expected_profit = fields.Monetary(
         string="Expected Profit",
@@ -25,7 +25,7 @@ class SaleOrder(models.Model):
         compute="_compute_apu_summary",
         store=True,
         readonly=True,
-        groups="sale_apu.group_apu_view_costs,sale.group_sale_manager",
+        groups="sale_apu.group_apu_view_costs,sales_team.group_sale_manager",
     )
     apu_margin_percent = fields.Float(
         string="Margin (%)",
@@ -33,7 +33,7 @@ class SaleOrder(models.Model):
         store=True,
         readonly=True,
         digits=(16, 2),
-        groups="sale_apu.group_apu_view_costs,sale.group_sale_manager",
+        groups="sale_apu.group_apu_view_costs,sales_team.group_sale_manager",
     )
 
     @api.depends("amount_untaxed", "apu_line_ids", "apu_line_ids.subtotal")
