@@ -1,0 +1,116 @@
+<odoo>
+    <template id="report_internal_apu_document">
+        <t t-foreach="docs" t-as="o">
+            <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+            <t t-set="company" t-value="o.company_id.sudo()"/>
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="mb-3">
+                        <h2 class="mb-1">Internal APU Report</h2>
+                        <div class="text-muted">Internal use only</div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <strong>Quotation/Sale Order:</strong>
+                            <span t-esc="o.name"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Customer:</strong>
+                            <span t-field="o.partner_id"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Quotation Date:</strong>
+                            <span t-field="o.date_order"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Salesperson:</strong>
+                            <span t-field="o.user_id"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Currency:</strong>
+                            <span t-field="o.currency_id"/>
+                        </div>
+                    </div>
+
+                    <table class="table table-sm o_main_table">
+                        <thead>
+                            <tr>
+                                <th>Component Product</th>
+                                <th>Description</th>
+                                <th class="text-end">Quantity</th>
+                                <th>Unit of Measure</th>
+                                <th class="text-end">Unit Cost</th>
+                                <th class="text-end">Cost Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-if="o.apu_line_ids">
+                                <t t-foreach="o.apu_line_ids" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <span t-field="line.product_id"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line.name or ''"/>
+                                        </td>
+                                        <td class="text-end">
+                                            <span t-field="line.quantity"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.product_uom_id"/>
+                                        </td>
+                                        <td class="text-end">
+                                            <span t-field="line.unit_cost" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        </td>
+                                        <td class="text-end">
+                                            <span t-field="line.subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                            <t t-else="">
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted">
+                                        No APU lines.
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <div class="row mt-4">
+                        <div class="col-6 offset-6">
+                            <table class="table table-sm">
+                                <tr>
+                                    <td><strong>Total APU</strong></td>
+                                    <td class="text-end">
+                                        <span t-field="o.apu_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Untaxed Quotation Amount</strong></td>
+                                    <td class="text-end">
+                                        <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Expected Profit</strong></td>
+                                    <td class="text-end">
+                                        <span t-field="o.apu_expected_profit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Margin %</strong></td>
+                                    <td class="text-end">
+                                        <span t-esc="'%.2f%%' % o.apu_margin_percent"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

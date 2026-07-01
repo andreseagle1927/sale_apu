@@ -7,6 +7,8 @@
         "security/sale_apu_security.xml",
         "security/ir.model.access.csv",
         "views/sale_order_views.xml",
+        "reports/sale_apu_report_templates.xml",
+        "reports/sale_apu_report.xml",
     ],
     "installable": True,
     "application": False,

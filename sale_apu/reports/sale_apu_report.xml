@@ -1,0 +1,13 @@
+<odoo>
+    <record id="action_report_internal_apu" model="ir.actions.report">
+        <field name="name">Internal APU Report</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sale_apu.report_internal_apu_document</field>
+        <field name="report_file">sale_apu.report_internal_apu_document</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+        <field name="groups_id" eval="[(4, ref('sale_apu.group_apu_view_costs'))]"/>
+        <field name="print_report_name">'Internal APU Report - %s' % (object.name)</field>
+    </record>
+</odoo>
