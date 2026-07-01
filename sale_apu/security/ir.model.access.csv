@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_apu_line_salesman,sale.order.apu.line salesman,model_sale_order_apu_line,sale.group_sale_salesman,1,1,1,1
+access_sale_order_apu_line_manager,sale.order.apu.line manager,model_sale_order_apu_line,sale.group_sale_manager,1,1,1,1
+access_sale_order_apu_line_apu_view_costs,sale.order.apu.line apu view costs,model_sale_order_apu_line,sale_apu.group_apu_view_costs,1,1,1,1
