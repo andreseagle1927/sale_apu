@@ -103,7 +103,7 @@
                                 <tr>
                                     <td><strong>Margin %</strong></td>
                                     <td class="text-end">
-                                        <span t-esc="'%.2f%%' % o.apu_margin_percent"/>
+                                        <span t-esc="'%.2f' % (o.apu_margin_percent or 0.0)"/>%
                                     </td>
                                 </tr>
                             </table>
